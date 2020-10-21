@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useHookWithWebsocket } from '../utils/hooks1';
 
 export const Room2 = () => {
@@ -7,7 +7,7 @@ export const Room2 = () => {
   return (
     <div>
       <span>{visible ? 'true' : 'false'}</span>
-      <button onClick={() => setVisible(!visible)}>send</button>
+      <button type="button" onClick={() => setVisible(!visible)}>send</button>
     </div>
-  )
+  );
 };

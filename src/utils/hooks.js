@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { URL } from '../config';
-import { customSocket } from './customSocket';
+import { CustomSocket } from './customSocket';
 
 export const useHookWithWebsocket = (initValue, channel) => {
+  // eslint-disable-next-line prefer-const
   let [socket, setSocket] = useState();
   const [value, setValue] = useState(initValue);
-  const setMessage = (value) => socket.sendMessage(channel, value);
-  useEffect(() => {
-    socket = new customSocket();
-    socket.initilize(URL);
-    setSocket(socket)
-    return () => {
-      socket.ws.close()
-    }
-  }, []);
+  const setMessage = (data) => socket.sendMessage(channel, data);
 
   useEffect(() => {
-    socket && socket.addListener(channel, setValue);
-  }, [channel])
+    socket = new CustomSocket();
+    socket.initilize(URL);
+    setSocket(socket);
+
+    return () => {
+      socket.ws.close();
+    };
+  });
+
+  useEffect(() => {
+    if (socket) {
+      socket.addListener(channel, setValue);
+    }
+  }, [channel]);
 
   return [value, setMessage];
 };
-

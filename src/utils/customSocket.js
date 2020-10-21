@@ -1,5 +1,4 @@
-export class customSocket {
-
+export class CustomSocket {
   initilize(url) {
     this.ws = new WebSocket(url);
   }
@@ -8,17 +7,17 @@ export class customSocket {
     this.ws.addEventListener('message', (event) => {
       const eventData = JSON.parse(event.data);
       if (eventData.channel === channel) {
-        method(eventData.message)
+        method(eventData.message);
       }
-    })
+    });
   }
 
   sendMessage(channel, message) {
     this.ws.send(JSON.stringify(
       {
         channel,
-        message
-      }
-    ))
+        message,
+      },
+    ));
   }
 }
