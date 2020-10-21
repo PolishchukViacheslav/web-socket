@@ -3,12 +3,10 @@ import { URL } from '../config';
 import { customSocket } from './customSocket';
 
 export const useHookWithWebsocket = (initValue, channel) => {
-  debugger;
   let [socket, setSocket] = useState();
   const [value, setValue] = useState(initValue);
   const setMessage = (value) => socket.sendMessage(channel, value);
   useEffect(() => {
-    debugger;
     socket = new customSocket();
     socket.initilize(URL);
     setSocket(socket)
@@ -18,7 +16,6 @@ export const useHookWithWebsocket = (initValue, channel) => {
   }, []);
 
   useEffect(() => {
-    debugger;
     socket && socket.addListener(channel, setValue);
   }, [channel])
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHookWithWebsocket } from '../utils/hooks';
+import { useHookWithWebsocket } from '../utils/hooks1';
 
 export const Room2 = () => {
   const [visible, setVisible] = useHookWithWebsocket(false, 'channel1');
